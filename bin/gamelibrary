@@ -16,28 +16,25 @@ require_relative '../lib/recommendation'
     puts "when executing, type either -l or --list to quickly see a list of your games"
   end
 
-  # def list
-  #   #need to add user's game list method in here (shows OOP)
-  #   @game_library.game_instances
-  # end
-
 app = Menu.new
 
 #add notes to readme to tell users how to access help menu
   argv_var = ARGV[0]
-  if argv_var == "-h" || argv_var == "--help"
-    puts help_menu 
-    ARGV.clear
-  else argv_var == "-l" || argv_var == "--list"
+  ARGV.clear
+  case argv_var
+  when "-h"
+    puts help_menu
+  when '--help'
+      puts help_menu
+  when "-l" 
     app.game_library.user_games_lister
-    ARGV.clear
     exit
-  end 
+  when "--list"
+    app.game_library.user_games_lister
+    exit
+  else 
+    app.main_menu
+    Menu.menu_arrows
+  end
+ 
 
-
-#menu object, "app" instance of menu class. then passing that variable through to the main menu class method. need to be able to call user sleeciton integer 
-
-#so initalized instance above called app, then applied the main menu method to run with it, which extensionally runs the name selector 
-app.main_menu
-
-Menu.menu_arrows
