@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+
+#gems section:
+require "tty-prompt"
+require "colorize"
+require "terminal-table"
+require_relative '../lib/menu_assist'
+
+#links together files
+require_relative '../lib/game_library'
+require_relative '../lib/menu'
+require_relative '../lib/recommendation'
+
+def test
+  puts "working"
+end
+
+def test_also
+  puts "hello"
+end
+
+var = ARGV[0]
+if var == "hi"
+  puts test
+else var == "yo"
+  puts test_also
+end
+
+var = ARGV[0]
+  ARGV.clear
+
+app = Menu.new
+#menu object, "app" instance of menu class. then passing that variable through to the main menu class method. need to be able to call user sleeciton integer 
+
+#so initalized instance above called app, then applied the main menu method to run with it, which extensionally runs the name selector 
+app.main_menu
+
+Menu.menu_arrows

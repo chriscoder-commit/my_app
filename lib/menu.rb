@@ -1,6 +1,4 @@
-#links/gems section:
-require "tty-prompt"
-require_relative 'menu_assist'
+
 
 #the main-menu class 
 class Menu
@@ -10,20 +8,27 @@ class Menu
 
   def initialize 
     @game_library = GameLibrary.new
+    @recommendation = Recommendation.new
   end
 
   #allows user to use arrows to make a selection rather than type numbers
   def menu_arrows   
-  PROMPT.select("choose from the following") do |menu|
+  PROMPT.select("choose from the following".colorize(:color => :blue)) do |menu|
     menu.choice({ name: "receive a recommendation", value: "1" })
     menu.choice({ name: "view all games", value: '2' })
     menu.choice({ name: "add a game", value: '3' })
     menu.choice({ name: 'exit application', value: '4' })
+    menu.choice({ name: 'remove a game from your list', value: '5'})
     end
   end
 
-
-
+  # def terminal_table
+  #   rows = @usergames.map do |game|
+  #     game.to_a
+  #   end
+  #   table = Terminal::Table.new({headings: HEADINGS, rows: rows })
+  #   puts table
+  # end
 
   #This is where an integer choice has to be made
   def user_selection_integer
@@ -45,17 +50,21 @@ class Menu
     loop do
       case menu_arrows
         when "1"
-          puts "working"
+          @recommendation.recommendation_menu 
         when "2"
+          puts "you have the following number of games in your library: "
+            @game_library.game_instances
           puts "your custom list of games:"
-          @game_library.user_games_lister
+            @game_library.user_games_lister
         when "3"
-          puts "oh PLEASE still be working!"
           puts "add a game:"
             @game_library.add_title 
         when "4"
+          @game_library.write_games
           puts "thanks for your time!"
           exit 
+        when "5"
+          @game_library.delete_games
         end 
     end 
   end 
