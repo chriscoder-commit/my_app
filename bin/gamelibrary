@@ -11,25 +11,30 @@ require_relative '../lib/game_library'
 require_relative '../lib/menu'
 require_relative '../lib/recommendation'
 
-def test
-  puts "working"
-end
+  def help_menu
+    puts "This application allows users to store"
+    puts "when executing, type either -l or --list to quickly see a list of your games"
+  end
 
-def test_also
-  puts "hello"
-end
-
-var = ARGV[0]
-if var == "hi"
-  puts test
-else var == "yo"
-  puts test_also
-end
-
-var = ARGV[0]
-  ARGV.clear
+  # def list
+  #   #need to add user's game list method in here (shows OOP)
+  #   @game_library.game_instances
+  # end
 
 app = Menu.new
+
+#add notes to readme to tell users how to access help menu
+  argv_var = ARGV[0]
+  if argv_var == "-h" || argv_var == "--help"
+    puts help_menu 
+    ARGV.clear
+  else argv_var == "-l" || argv_var == "--list"
+    app.game_library.user_games_lister
+    ARGV.clear
+    exit
+  end 
+
+
 #menu object, "app" instance of menu class. then passing that variable through to the main menu class method. need to be able to call user sleeciton integer 
 
 #so initalized instance above called app, then applied the main menu method to run with it, which extensionally runs the name selector 

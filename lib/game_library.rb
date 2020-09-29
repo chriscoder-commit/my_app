@@ -79,11 +79,16 @@ class GameLibrary
   #user games has the information from the JSON, and can thus puts it. 
   #game is a hash - thus don't need two parameters, it has title and genre from the JSON
   def user_games_lister  
-    @user_games.each do |game|
-      puts game["title"]
-      puts game["genre"]  
+    data = @user_games.map do |game|
+      [game["title"], game["genre"]]
     end
+    terminal_table(data)
   end 
+
+  def terminal_table(games)
+    table = Terminal::Table.new({headings: [:title, :genre], rows: games })
+    puts table
+  end
 
 
 end 

@@ -4,7 +4,7 @@
 class Menu
   #menuassist is for getting my ttyprompt to work, it is connected through that document
   include MenuAssist
-  attr_accessor :main_menu, :user_selection_integer, :name_selector
+  attr_reader :game_library
 
   def initialize 
     @game_library = GameLibrary.new
@@ -21,14 +21,6 @@ class Menu
     menu.choice({ name: 'remove a game from your list', value: '5'})
     end
   end
-
-  # def terminal_table
-  #   rows = @usergames.map do |game|
-  #     game.to_a
-  #   end
-  #   table = Terminal::Table.new({headings: HEADINGS, rows: rows })
-  #   puts table
-  # end
 
   #This is where an integer choice has to be made
   def user_selection_integer
