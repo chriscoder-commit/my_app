@@ -25,6 +25,7 @@ class Recommendation
       case recommend
       when "1"
          puts "Guns or Swords? (type guns or swords)"
+         print '> '
          choice = gets.chomp
          if choice == "guns"
           puts "Destiny 2"
@@ -37,6 +38,7 @@ class Recommendation
          end  
       when "2"
          puts "new, old or getting really old? type: (new, old, really old)"
+         print '> '
          choice = gets.chomp 
          if choice == "new"
           puts "Baulder's Gate 3"
@@ -50,9 +52,11 @@ class Recommendation
          end 
       when "3"
          puts "MMO or multiplayer?"
+         print '> '
          choice = gets.chomp
          if choice == "MMO".downcase
-          puts "Are you just going to play WoW?"
+          puts "Are you just going to play WoW? (yes or no)"
+            print '> '
             choice2 = gets.chomp
             if choice2 == "yes"
               puts "Ugh, fine!"
@@ -77,6 +81,7 @@ class Recommendation
           satisfied = false 
           while satisfied == false do 
             puts "do you want to play, #{best_games}type yes or no?"
+            print '> '
             answer = gets.chomp
               if answer == "no"
                 puts "hmm, bummer!"

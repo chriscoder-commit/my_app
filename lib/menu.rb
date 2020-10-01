@@ -1,5 +1,3 @@
-
-
 #the main-menu class 
 class Menu
   #menuassist is for getting my ttyprompt to work, it is connected through that document
@@ -9,6 +7,7 @@ class Menu
   def initialize 
     @game_library = GameLibrary.new
     @recommendation = Recommendation.new
+    @time_used = TimeUsed.new 
   end
 
   #allows user to use arrows to make a selection rather than type numbers
@@ -17,8 +16,9 @@ class Menu
     menu.choice({ name: "receive a recommendation", value: "1" })
     menu.choice({ name: "view all games", value: '2' })
     menu.choice({ name: "add a game", value: '3' })
-    menu.choice({ name: 'exit application', value: '4' })
-    menu.choice({ name: 'remove a game from your list', value: '5'})
+    menu.choice({ name: 'delete games', value: '4' })
+    menu.choice({ name: 'time wasted on video games', value: '5'})
+    menu.choice({ name: 'exit application', value: '6'})
     end
   end
 
@@ -50,13 +50,15 @@ class Menu
             @game_library.user_games_lister
         when "3"
           puts "add a game:"
-            @game_library.add_title 
+            @game_library.add_title
         when "4"
+          @game_library.delete_games
+        when "5"
+          @time_used.time_wasted
+        when "6"
           @game_library.write_games
           puts "thanks for your time!"
-          exit 
-        when "5"
-          @game_library.delete_games
+          exit
         end 
     end 
   end 

@@ -10,6 +10,7 @@ require_relative '../lib/menu_assist'
 require_relative '../lib/game_library'
 require_relative '../lib/menu'
 require_relative '../lib/recommendation'
+require_relative '../lib/time_used'
 
   def help_menu
     puts "This application allows users to store"

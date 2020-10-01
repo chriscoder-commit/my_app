@@ -1,9 +1,9 @@
-#need json because it is the document storing values for users
 require "json"
 
 
 class GameLibrary 
-  attr_reader :count 
+  attr_reader :count, :user_games
+  attr_writer :genre, :entry
 
   #here I am initalizing the instance variable to = the method read user games, as the IV stores the function of read user games which is to read
   #the information in attached JSON file. but now the information can be used elsewhere!
@@ -24,19 +24,12 @@ class GameLibrary
   end
 
   #this allows me to add new games - i.e. file.write does this to the file in the path, pretty generates this from the @user games 
-  #IV and all its associated stuff
+  #IV and all its associated stuff. when commented out, i can add a game to the list and it would stay until i closed the app, but wouldn't save.
+  #could translate .write to permanently write something to a file.  
   def write_games
     File.write("#{Dir.home}/Desktop/my_app/public/user_games.json", JSON.pretty_generate(@user_games))
   end
 
-  #made a method to identify what to delete in def find. it takes title, which is a local variable of delete_games below to get user input of what,
-  # to delete. but because it's being passed to the method find as an argument (title), it works! then using .find on @user_games which contains
-  #all the games, and specifies game as a parameter in the pipes. thus because game(contents of the json) are a hash, you just do [] with title,
-  #which is the name of the key. and say that is equal to title. that is, when asked what to delete, the person types the title, then they confirm it.
-  #they want to delete the title. then new variable called game is made - and game = the product of what happens in the find method. so, 
-  #in find, title is put in the (), i.e. the gets asking for what to delete (halo), basically. then ruby looks through @user_games with .find do
-  #and looks for a title which is the value of the title key, then if that title == to the gets.chomp then it will be selected, and back in 
-  #delete games the found title will be deleted. 
   def find(title)
     @user_games.find do |game|
       game["title"] == title 
@@ -49,6 +42,7 @@ class GameLibrary
     print '> '
     title = gets.chomp
     puts "are you sure you want to delete #{title}? Type yes or no"
+    print '> '
     confirm_delete = gets.chomp
     if confirm_delete == "yes"
       game = find(title) 
