@@ -23,25 +23,39 @@ class TimeUsed
 
   def time_wasted
     user_input
-    yearly_playtime = (@weekly_playtime * 4) * 12
+    yearly_playtime = ((@weekly_playtime * 4) * 12)
     puts "Oh wow! So assuming you have sustained this average for the past year, you'd have played for #{yearly_playtime} hours!"
     puts "Are you interested in knowing what else you could have done with this time? (yes/no)"
     print '> '
     interest = gets.chomp
     if interest == "yes"
       puts "Okay!"
+      calculation = yearly_playtime
       case yearly_playtime 
       when yearly_playtime = 1..30
         puts "working"
       when yearly_playtime = 31..100
         puts "also working"
-      when yearly_playtime = 101..1000
+      when yearly_playtime = 101..500
+        french = 400 - calculation
+        puts "Did you know it would take you around 400 hours to learn French? So in around another #{french} hours, you could have been annoying friends and family!"
+      when yearly_playtime = 501..1000
         puts "thanks for working"
       end 
     elsif interest == "no"
       puts "Possibly a wise decision!"
       puts "Returning to main menu"
       return
+    begin
+      puts "Error! Try again!"
+      return 
+    rescue => exception
+      
+    else
+      
+    ensure
+      
+    end
     end 
   end 
   
