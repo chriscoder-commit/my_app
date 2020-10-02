@@ -1,41 +1,39 @@
 #!/usr/bin/env ruby
 
-#gems section:
+# gems section:
 require "tty-prompt"
 require "colorize"
 require "terminal-table"
 require_relative '../lib/menu_assist'
 
-#links together files
+# links together files
 require_relative '../lib/game_library'
 require_relative '../lib/menu'
 require_relative '../lib/recommendation'
 require_relative '../lib/time_used'
 
-  def help_menu
-    puts "This application allows users to store"
-    puts "when executing, type either -l or --list to quickly see a list of your games"
-  end
+def help_menu
+  puts "This application allows users to store"
+  puts "when executing, type either -l or --list to quickly see a list of your games"
+end
 
 app = Menu.new
 
-#add notes to readme to tell users how to access help menu
-  argv_var = ARGV[0]
-  ARGV.clear
-  case argv_var
-  when "-h"
-    puts help_menu
-  when '--help'
-      puts help_menu
-  when "-l" 
-    app.game_library.user_games_lister
-    exit
-  when "--list"
-    app.game_library.user_games_lister
-    exit
-  else 
-    app.main_menu
-    Menu.menu_arrows
-  end
- 
-
+# add notes to readme to tell users how to access help menu
+argv_var = ARGV[0]
+ARGV.clear
+case argv_var
+when "-h"
+  puts help_menu
+when '--help'
+  puts help_menu
+when "-l"
+  app.game_library.user_games_lister
+  exit
+when "--list"
+  app.game_library.user_games_lister
+  exit
+else
+  app.main_menu
+  Menu.menu_arrows
+end

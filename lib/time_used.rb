@@ -62,7 +62,6 @@ class TimeUsed
       return
     else 
       puts "Error! Try again!"
-    end 
-  end 
-  
+    end
+  end
 end 
