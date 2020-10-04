@@ -8,3 +8,5 @@ filepath = File.dirname __FILE__
 Dir.chdir(filepath)
 # actually install dependencies
 system("bundle install")
+
+#testing
